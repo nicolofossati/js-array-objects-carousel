@@ -64,11 +64,11 @@ const imgBorderDom = document.getElementsByClassName('border-container');
 /* Posso modificare le classi a partire da imgContainerDom in questo modo:
     imgContainerDom[i].classList.add('className');
 */
+let currentImage = 0;
 
-const myTimeout = setTimeout(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+const myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
     console.log("Sono passati 3 sec");
-    let currentImage = 0;
-
+    
     imgContainerDom[currentImage].classList.remove('show');
 
     imgBorderDom[currentImage].classList.remove('border-img');
