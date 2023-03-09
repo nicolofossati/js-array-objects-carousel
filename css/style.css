@@ -19,7 +19,7 @@
 }
 
 .img-container{
-    width: 100%;
+    width: calc(100% - 20vh);
     height: 100%;
     position: absolute;
     display: none;
@@ -97,7 +97,20 @@
 }
 
 .img-container img{
-    width: calc(100% - 20vh);
+    width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.description-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: end;
+    color: white;
+    padding: 20px;
+}
+
+.img-container h3 {
+    padding-bottom: 10px;
 }

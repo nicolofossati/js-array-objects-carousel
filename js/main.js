@@ -55,12 +55,13 @@ let thumbnailsStringImg = "";
 for(let i=0; i<images.length; i++){
     const image_object = images[i];
     if(i==0){
-        sliderString += `<div class="img-container show"><img src="${image_object['image']}"></div>`;
-        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container border-img"></div><img class="img-ref" src="${image_object['image']}"></div>`
+        sliderString += `<div class="img-container show"><img src="${image_object['image']}">`;
     } else {
-        sliderString += `<div class="img-container"><img src="${image_object['image']}"></div>`;
-        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container"></div><img class="img-ref filter-img" src="${image_object['image']}"></div>`
+        sliderString += `<div class="img-container"><img src="${image_object['image']}">`;
     }
+
+    sliderString +=    `<div class="description-img"><h3>${image_object['title']}</h3><span>${image_object['text']}</span></div></div>`;
+    thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container border-img"></div><img class="img-ref" src="${image_object['image']}"></div>`;
 }
 
 thumbnailsStringImg = "<div class=\"img-thumb-container\">"+thumbnailsStringImg+"</div>";
