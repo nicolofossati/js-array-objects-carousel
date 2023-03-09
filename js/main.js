@@ -48,21 +48,19 @@ const images = [
 
 
 /*  COPIA DEL VECCHIO PROGETTO */
-const imgArray = ['img/01.webp', 'img/02.webp', 'img/03.webp', 'img/04.webp', 'img/05.webp'];
 const sliderDom = document.querySelector('#slider');
 let sliderString = "";
 let thumbnailsStringImg = "";
 
-for(let i=0; i < imgArray.length; i++){
+for(let i=0; i<images.length; i++){
+    const image_object = images[i];
     if(i==0){
-        sliderString += `<div class="img-container show"><img src="${imgArray[i]}"></div>`;
-        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container border-img"></div><img class="img-ref" src="${imgArray[i]}"></div>`
+        sliderString += `<div class="img-container show"><img src="${image_object['image']}"></div>`;
+        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container border-img"></div><img class="img-ref" src="${image_object['image']}"></div>`
     } else {
-        sliderString += `<div class="img-container"><img src="${imgArray[i]}"></div>`;
-        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container"></div><img class="img-ref filter-img" src="${imgArray[i]}"></div>`
+        sliderString += `<div class="img-container"><img src="${image_object['image']}"></div>`;
+        thumbnailsStringImg +=  `<div class="thumb-img"><div class="border-container"></div><img class="img-ref filter-img" src="${image_object['image']}"></div>`
     }
-
-    
 }
 
 thumbnailsStringImg = "<div class=\"img-thumb-container\">"+thumbnailsStringImg+"</div>";
