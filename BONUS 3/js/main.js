@@ -69,14 +69,17 @@ const stopDom = document.querySelector('#stop');
 const reverseDom = document.querySelector('#reverse');
 let myTimeout = "";
 let start_active = false;
+let direction = true; // se è true va avanti, se è false va indietro 
 
 let currentImage = 0;
 
 startDom.addEventListener('click', function(){
     if(!start_active){
+
+        start_active = true;
+
         myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
             
-            start_active = true;
             
             imgContainerDom[currentImage].classList.remove('show');
         
@@ -102,6 +105,54 @@ stopDom.addEventListener('click', function(){
         start_active = false;
         clearInterval(myTimeout);
     }
-})
+});
 
+reverseDom.addEventListener('click', function(){
+    if(start_active){ // se sta già scorrendo
+        clearInterval(myTimeout);
+        if(direction){ // se sta andando avanti
+            direction = false;
+            myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+            
+                start_active = true;
+                
+                imgContainerDom[currentImage].classList.remove('show');
 
+                imgBorderDom[currentImage].classList.remove('border-img');
+                imgFilterDom[currentImage].classList.add('filter-img');
+
+                if(currentImage > 0){
+                    currentImage--;
+                } else {
+                    currentImage = imgContainerDom.length-1;
+                }
+                imgContainerDom[currentImage].classList.add('show');
+
+                imgFilterDom[currentImage].classList.remove('filter-img');
+                imgBorderDom[currentImage].classList.add('border-img');
+            }, 3000);
+        } else {
+            direction = true;
+            myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+            
+                start_active = true;
+                
+                imgContainerDom[currentImage].classList.remove('show');
+            
+                imgBorderDom[currentImage].classList.remove('border-img');
+                imgFilterDom[currentImage].classList.add('filter-img');
+            
+                if(currentImage < imgContainerDom.length-1){
+                    currentImage++;
+                } else {
+                    currentImage = 0;
+                }
+            
+                imgContainerDom[currentImage].classList.add('show');
+            
+                imgFilterDom[currentImage].classList.remove('filter-img');
+                imgBorderDom[currentImage].classList.add('border-img');
+            }, 3000);
+        }
+    }
+});
