@@ -67,12 +67,12 @@ const imgBorderDom = document.getElementsByClassName('border-container');
 const startDom = document.querySelector('#start');
 const stopDom = document.querySelector('#stop');
 const reverseDom = document.querySelector('#reverse');
-
+let myTimeout = "";
 
 let currentImage = 0;
 
 startDom.addEventListener('click', function(){
-    const myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+    myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
         console.log("Sono passati 3 sec");
         
         imgContainerDom[currentImage].classList.remove('show');
@@ -92,5 +92,9 @@ startDom.addEventListener('click', function(){
         imgBorderDom[currentImage].classList.add('border-img');
     }, 3000);    
 });
+
+stopDom.addEventListener('click', function(){
+    clearInterval(myTimeout);
+})
 
 
