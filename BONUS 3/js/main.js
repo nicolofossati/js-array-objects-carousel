@@ -68,33 +68,40 @@ const startDom = document.querySelector('#start');
 const stopDom = document.querySelector('#stop');
 const reverseDom = document.querySelector('#reverse');
 let myTimeout = "";
+let start_active = false;
 
 let currentImage = 0;
 
 startDom.addEventListener('click', function(){
-    myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
-        console.log("Sono passati 3 sec");
+    if(!start_active){
+        myTimeout = setInterval(function autoplay(){//dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+            
+            start_active = true;
+            
+            imgContainerDom[currentImage].classList.remove('show');
         
-        imgContainerDom[currentImage].classList.remove('show');
-    
-        imgBorderDom[currentImage].classList.remove('border-img');
-        imgFilterDom[currentImage].classList.add('filter-img');
-    
-        if(currentImage < imgContainerDom.length-1){
-            currentImage++;
-        } else {
-            currentImage = 0;
-        }
-    
-        imgContainerDom[currentImage].classList.add('show');
-    
-        imgFilterDom[currentImage].classList.remove('filter-img');
-        imgBorderDom[currentImage].classList.add('border-img');
-    }, 3000);    
+            imgBorderDom[currentImage].classList.remove('border-img');
+            imgFilterDom[currentImage].classList.add('filter-img');
+        
+            if(currentImage < imgContainerDom.length-1){
+                currentImage++;
+            } else {
+                currentImage = 0;
+            }
+        
+            imgContainerDom[currentImage].classList.add('show');
+        
+            imgFilterDom[currentImage].classList.remove('filter-img');
+            imgBorderDom[currentImage].classList.add('border-img');
+        }, 3000);
+    }
 });
 
 stopDom.addEventListener('click', function(){
-    clearInterval(myTimeout);
+    if(start_active){
+        start_active = false;
+        clearInterval(myTimeout);
+    }
 })
 
 
